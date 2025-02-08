@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trisa Bank</title>
+  <meta name="description" content="Trisa Bank - Your trusted partner in financial growth. Discover secure banking solutions, loans, and personalized advice." />
+  <meta name="keywords" content="Trisa Bank, financial growth, secure banking, loans, financial advice" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white-color: #ffffff;
+      --green-color: #028482;
+      --header-height: 65px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    /* Fixed Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.6); /* semi-transparent background */
+    }
+    header nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 2rem;
+      height: var(--header-height);
+    }
+    header nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header nav .logo h3 {
+      color: var(--white-color);
+      font-weight: 400;
+    }
+    header nav .logo .bar {
+      font-size: 1.35rem;
+      color: var(--white-color);
+      cursor: pointer;
+      display: none;
+    }
+    header nav .menu ul {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+    header nav .menu ul li a {
+      color: var(--white-color);
+      font-weight: 400;
+      text-decoration: none;
+    }
+    /* Slider (Hero) Section */
+    .home {
+      position: relative;
+      width: 100%;
+      height: 100vh; /* full viewport height */
+      overflow: hidden;
+    }
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 100%;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+    }
+    .slide.active {
+      left: 0;
+      opacity: 1;
+    }
+    /* Background images for slides */
+    .slide:nth-child(1) {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url("HOME\ BG2\ \(2\).webp") no-repeat center/cover;
+    }
+    .slide:nth-child(2) {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url("home-background.jpg") no-repeat center/cover;
+    }
+    .slide:nth-child(3) {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url("HOME\ BG2\ \(1\).webp") no-repeat center/cover;
+    }
+    .slide .content {
+      text-align: center;
+      color: var(--white-color);
+      padding: 20px;
+    }
+    .slide .content h5 {
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .slide .content h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .slide .content p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .slide .content .search {
+      width: 100%;
+      max-width: 38rem;
+      height: 45px;
+      background: var(--white-color);
+      border-radius: 3rem;
+      display: flex;
+      align-items: center;
+      padding: 0.3rem;
+      margin: 0 auto;
+    }
+    .slide .content .search input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      padding: 0 1rem;
+    }
+    .slide .content .search button {
+      height: 100%;
+      padding: 0 1rem;
+      border-radius: inherit;
+      background: var(--green-color);
+      border: none;
+      color: var(--white-color);
+      cursor: pointer;
+    }
+    /* Slider Navigation Arrows */
+    .slider-nav {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 10;
+    }
+    .slider-nav span {
+      cursor: pointer;
+      font-size: 2rem;
+      color: var(--white-color);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+    /* Other Sections */
+    .section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .services, .testimonials, .updates {
+      background-color: #f9f9f9;
+      margin-bottom: 20px;
+    }
+    /* Add extra top padding to first non-slider section so content is not hidden behind fixed header */
+    .after-slider {
+      padding-top: calc(var(--header-height) + 20px);
+    }
+    /* Footer */
+    .footer {
+      background-color: rgb(17, 42, 52);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+    .footer a {
+      color: white;
+      text-decoration: none;
+    }
+    /* Responsive: Hamburger Menu on Small Screens */
+    @media (max-width: 768px) {
+      header nav .logo .bar {
+        display: block;
+      }
+      header nav .menu ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+      }
+      header nav .menu ul.active {
+        display: flex;
+      }
+      .slide .content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Header & Navigation -->
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="bar" onclick="toggleMenu()">
+          <i class="fa fa-bars"></i>
+        </div>
+        <h3>Trisa Bank</h3>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="INDEX.HTML">Home</a></li>
+          <li><a href="ABOUT.HTML">About Us</a></li>
+          <li><a href="registration.html"> Add Account</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Slider Section (Starts at the very top) -->
+  <section class="home">
+    <div class="slider">
+      <!-- Slide 1 -->
+      <div class="slide active">
+        <div class="content">
+          <h5>Trisa Bank</h5>
+          <h1>Your Trusted Partner in Financial Growth</h1>
+          <p>Experience secure banking solutions, personalized financial advice, and seamless services. Let's build your financial future together.</p>
+          <div class="search">
+            <input type="text" placeholder="How can we help you today?" />
+            <button>Search</button>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <div class="content">
+          <h5>Personal Banking</h5>
+          <h1>Secure &amp; Innovative</h1>
+          <p>Discover tailored financial solutions designed for your personal growth and security.</p>
+          <div class="search">
+            <input type="text" placeholder="Search services..." />
+            <button>Search</button>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <div class="content">
+          <h5>Business Banking</h5>
+          <h1>Empowering Your Business</h1>
+          <p>Access banking solutions that empower your business to reach new heights.</p>
+          <div class="search">
+            <input type="text" placeholder="Find business solutions..." />
+            <button>Search</button>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation Arrows -->
+      <div class="slider-nav">
+        <span class="prev" onclick="prevSlide()"><i class="fa fa-chevron-left"></i></span>
+        <span class="next" onclick="nextSlide()"><i class="fa fa-chevron-right"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Sections -->
+  <section class="section after-slider services">
+    <h2>Our Services</h2>
+    <p>Explore financial plans, loans, and much more.</p>
+  </section>
+  <section class="section testimonials">
+    <h2>What Our Customers Say</h2>
+    <p>"Trisa Bank has transformed my financial journey!"</p>
+  </section>
+  <section class="section updates">
+    <h2>Latest Updates</h2>
+    <p>Stay informed with our latest news and announcements.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="social">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <p>© 2025 Trisa Bank. All rights reserved.</p>
+    <div class="quick-links">
+      <p>
+        <a href="#">Home</a> | <a href="#">About Us</a> | <a href="#">Contact Us</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle hamburger menu for mobile view
+    function toggleMenu() {
+      const menu = document.querySelector('header nav .menu ul');
+      menu.classList.toggle('active');
+    }
+
+    // Slider functionality
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slider .slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+      showSlide(slideIndex);
+    }
+
+    // Auto-slide every 5 seconds
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+</html>
